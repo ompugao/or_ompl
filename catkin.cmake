@@ -48,6 +48,7 @@ add_library(${PROJECT_NAME}
     src/OMPLConversions.cpp
     src/OMPLPlanner.cpp
     src/OMPLSimplifier.cpp
+    src/OMPLBSplineSmoother.cpp
     src/RobotStateSpace.cpp
     src/TSR.cpp
     src/TSRChain.cpp

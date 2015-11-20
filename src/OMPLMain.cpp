@@ -38,6 +38,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "OMPLPlanner.h"
 #include "OMPLConversions.h"
 #include "OMPLSimplifer.h"
+#include "OMPLBSplineSmoother.h"
 #include "PlannerRegistry.h"
 
 using namespace OpenRAVE;
@@ -54,6 +55,9 @@ InterfaceBasePtr CreateInterfaceValidated(
         // planning interface, so we can't auto-generate this.
         if (interfacename == "ompl_simplifier") {
             return boost::make_shared<or_ompl::OMPLSimplifier>(penv);
+        } 
+        if (interfacename == "ompl_bsplinesmoother") {
+            return boost::make_shared<or_ompl::OMPLBSplineSmoother>(penv);
         } 
 
         // Check whether this is an automatically-wrapped planner.
@@ -83,6 +87,7 @@ void GetPluginAttributesValidated(PLUGININFO &info)
     }
 
     info.interfacenames[PT_Planner].push_back("OMPL_Simplifier");
+    info.interfacenames[PT_Planner].push_back("OMPL_BSplineSmoother");
 
     // Forward OMPL log messages to OpenRAVE.
     ompl::msg::setLogLevel(ompl::msg::LOG_DEBUG);
